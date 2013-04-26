@@ -1,5 +1,6 @@
 <?php
 
-class EtuDev_KanbanizePHP_Exception extends Exception {
+class EtuDev_KanbanizePHP_Exception extends Exception
+{
 
 }
