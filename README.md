@@ -1,5 +1,6 @@
 KanbanizePHP
 ============
+status: WiP (abandoned for now)
 
 PHP Kanbanize API
 
