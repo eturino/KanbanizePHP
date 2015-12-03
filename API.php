@@ -38,6 +38,17 @@ class EtuDev_KanbanizePHP_API
         return $this;
     }
 
+    /**
+     * @param string $subdomain
+     *
+     * @return $this
+     */
+    public function setSubdomain($subdomain)
+    {
+        $this->kanbanize_url = 'https://'.$subdomain.'.kanbanize.com/index.php/api/kanbanize';
+        return $this;
+    }
+
     protected function executeCall(EtuDev_KanbanizePHP_APICall $call)
     {
         $api_key = $this->api_key;
