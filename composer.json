@@ -1,0 +1,7 @@
+{
+    "name": "middlebury/KanbanizePHP",
+    "description": "API wrapper for Kanbanize",
+    "require": {
+        "php": ">=5.3.0"
+    }
+}
