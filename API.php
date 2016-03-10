@@ -38,6 +38,17 @@ class EtuDev_KanbanizePHP_API
         return $this;
     }
 
+    /**
+     * @param string $subdomain
+     *
+     * @return $this
+     */
+    public function setSubdomain($subdomain)
+    {
+        $this->kanbanize_url = 'https://'.$subdomain.'.kanbanize.com/index.php/api/kanbanize';
+        return $this;
+    }
+
     protected function executeCall(EtuDev_KanbanizePHP_APICall $call)
     {
         $api_key = $this->api_key;
@@ -423,8 +434,41 @@ class EtuDev_KanbanizePHP_API
         return null;
     }
 
+    /**
+     * @param int       $boardid The ID of the board. You can see the board ID on the dashboard screen, in the upper right corner of each board.
+     * @param string    $fromdate The date after which the activities of interest happened. Accepts the following formats: ‘2012-05-05′, ’10 September 2012′.
+     * @param string    $todate The date before which the activities of interest happened. Accepts the following formats: ‘2012-05-05′, ’10 September 2012′.
+     * @param int       $page Default is 1
+     * @param array     $options
+     * - resultsperpage   Default is 30
+     * - author           Default is ALL
+     * - eventtype        Options : Transitions, Updates, Comments, Blocks. Default is All
+     * - textformat       Options: “plain” (default) and “html”. If the plain text format is used, the HTML tags are stripped from the history details.
+     *
+     * @return array
+     */
+    public function getBoardActivities($boardid, $fromdate, $todate, $page = 1, $options = array())
+    {
+      $call = new EtuDev_KanbanizePHP_APICall();
+      $call->setFunction('get_board_activities');
+
+      $d = array(
+        'boardid' => $boardid,
+        'fromdate' => $fromdate,
+        'todate' => $todate,
+        'page' => $page,
+      );
+
+      foreach ($options as $k => $v) {
+          $d[$k] = $v;
+      }
+
+      $call->setData($d);
+
+      return $this->doCall($call);
+    }
+
 
 //	TODO: public function getAllTasks();
-//	TODO: public function getBoardActivities();
 
 }
